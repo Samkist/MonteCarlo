@@ -1,15 +1,8 @@
-import warnings
-from urllib3.exceptions import NotOpenSSLWarning
-
-warnings.simplefilter('ignore', category=NotOpenSSLWarning)
-
-# Now place your imports
 import numpy as np
-import pandas as pd
 import yfinance as yf
 import matplotlib.pyplot as plt
 from urllib3.exceptions import InsecureRequestWarning
-warnings.simplefilter('ignore', category=InsecureRequestWarning)
+import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 def calculate_log_returns(data):
