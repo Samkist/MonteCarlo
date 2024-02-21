@@ -1,8 +1,16 @@
+import warnings
+from urllib3.exceptions import NotOpenSSLWarning
+
+warnings.simplefilter('ignore', category=NotOpenSSLWarning)
+
+# Now place your imports
 import numpy as np
 import pandas as pd
 import yfinance as yf
 import matplotlib.pyplot as plt
-
+from urllib3.exceptions import InsecureRequestWarning
+warnings.simplefilter('ignore', category=InsecureRequestWarning)
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 def calculate_log_returns(data):
     data['Log Returns'] = np.log(data['Close'] / data['Close'].shift(1))
@@ -27,7 +35,7 @@ def monte_carlo_simulation(data, drift, volatility, start_date, num_simulations=
     daily_returns = np.exp(drift + volatility * np.random.normal(0, 1, len(data.index)))
     price_paths = np.zeros_like(daily_returns)
 
-    price_paths[0] = data['Close'][0]
+    price_paths[0] = data['Close'].iloc[0]
 
     for t in range(1, len(data.index)):
         price_paths[t] = price_paths[t - 1] * daily_returns[t]
