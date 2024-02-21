@@ -1,7 +1,6 @@
 import numpy as np
 import yfinance as yf
 import matplotlib.pyplot as plt
-from urllib3.exceptions import InsecureRequestWarning
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
